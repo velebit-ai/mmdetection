@@ -540,6 +540,11 @@ class CocoMetric(BaseMetric):
                         t.append(f'{round(ap, 3)}')
                         eval_results[f'{nm["name"]}_precision'] = round(ap, 3)
 
+                        # Map at 50 iou threshold
+                        precision50 = precisions[0, :, idx, 0, -1]
+                        precision50 = precision50[precision50 > -1]
+                        eval_results[f'{nm["name"]}_precision@50'] = round(np.mean(precision50), 3)
+
                         # indexes of IoU  @50 and @75
                         for iou in [0, 5]:
                             precision = precisions[iou, :, idx, 0, -1]
