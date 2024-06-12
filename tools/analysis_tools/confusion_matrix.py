@@ -134,7 +134,7 @@ def analyze_per_img_dets(confusion_matrix,
             det_bboxes, _ = nms(
                 det_bboxes, det_scores, nms_iou_thr, score_threshold=score_thr)
         ious = bbox_overlaps(det_bboxes[:, :4], gt_bboxes)
-        det_scores = det_bboxes[:, 4]
+
         for i, score in enumerate(det_scores):
             det_match = 0
             if score >= score_thr:
